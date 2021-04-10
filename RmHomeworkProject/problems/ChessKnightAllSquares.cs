@@ -42,6 +42,25 @@ namespace RmHomeworkProject.problems {
             return prn;
         }
 
+        public string ContinueUntil(int finalX, int finalY, string prn) {
+            for (int level = 0; level < 5; level++) {
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        if (Squares[i, j] == level) {
+                            prn = Start(i, j, (level + 1), prn);
+                            if (Squares[finalX,finalY] != -1) {
+                                prn += " DONE! Level = " + level;
+                                return prn;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return prn;
+        }
+
+
         public bool IsFull() {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
