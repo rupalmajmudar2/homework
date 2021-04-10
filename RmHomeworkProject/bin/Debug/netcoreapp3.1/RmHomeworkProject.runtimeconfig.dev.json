@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\rupal\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\rupal\\.nuget\\packages"
+    ]
+  }
+}
