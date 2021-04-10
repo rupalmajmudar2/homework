@@ -14,8 +14,6 @@ namespace RmHomeworkProject.problems {
         }
 
         public string Start(int i, int j, int level, string prn) {
-            Squares[i, j] = 0;
-
             prn += " Starting at [" + i + "," + j + "] : ";
             prn = ExecuteFrom(i, j, level, prn);
             prn = ExecuteFrom(i + 2, j + 1, level, prn);
@@ -31,10 +29,10 @@ namespace RmHomeworkProject.problems {
         }
 
         public string Continue(string prn) {
-            for (int level = 0; level < 5; level++) { 
+            for (int level = 0; level < 5; level++) {
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
-                        if (Squares[i,j] == level) {
+                        if (Squares[i, j] == level) {
                             prn = Start(i, j, (level + 1), prn);
                         }
                     }
@@ -44,8 +42,20 @@ namespace RmHomeworkProject.problems {
             return prn;
         }
 
+        public bool IsFull() {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (Squares[i, j] == -1) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public string ExecuteFrom(int i, int j, int level, string prn) {
-            if ((i > 0) && (i < 8) && (j > 0) && (j < 8)) {
+            if ((i >= 0) && (i < 8) && (j >= 0) && (j < 8)) {
                 prn = Execute(i, j, level, prn);
             }
 

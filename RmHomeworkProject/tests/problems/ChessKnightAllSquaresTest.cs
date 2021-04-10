@@ -12,11 +12,14 @@ public class ChessKnightAllSquaresTest
         string position = board.GetBoardPosition();
 
         string prn = "";
-        prn = board.Start(4, 4, 0, prn);
+        prn = board.Start(0,0, 0, prn);
 
         prn = board.Continue(prn);
 
         string endPosition = board.GetBoardPosition();
-        Assert.IsTrue(true);
+
+        Assert.IsTrue(board.IsFull());
+
+
     }
 }
