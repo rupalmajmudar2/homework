@@ -14,7 +14,7 @@ namespace RmHomeworkProject.tests.problems {
 
             DiscIntersections di = new DiscIntersections();
             int Xns = di.solution(A);
-            Assert.IsTrue(true);
+            Assert.AreEqual(11, Xns);
         }
     }
 }
