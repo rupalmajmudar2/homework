@@ -2,6 +2,8 @@
 using System.Linq;
 
 namespace RmHomeworkProject.problems {
+
+    //https://www.bing.com/videos/search?q=DiscIntersections+problem+solution&cvid=4464dac180414df7836c4e98abdfe87d&aqs=edge..69i57.7144j0j1&pglt=299&PC=HCTS&ru=%2fsearch%3fq%3dDiscIntersections%2bproblem%2bsolution%26cvid%3d4464dac180414df7836c4e98abdfe87d%26aqs%3dedge..69i57.7144j0j1%26pglt%3d299%26FORM%3dANNTA1%26PC%3dHCTS&view=detail&mmscn=vwrc&mid=7A70D69E2D97C185AA097A70D69E2D97C185AA09&FORM=WRVORC
     class DiscIntersections {
         private ListWithDuplicates _IntersectionsDict;
         private List<Intersection> _PreviousXns;
@@ -129,6 +131,43 @@ namespace RmHomeworkProject.problems {
         public List<Intersection> AllKeysFor(int key) {
             List<Intersection> values = (from kvp in this where kvp.Key == key select kvp.Value).ToList();
             return values;
+        }
+    }
+
+    //===================================================
+
+    class DiscIntersectionsCorrectSolution {
+        class Interval {
+            public long Left;
+            public long Right;
+        }
+
+        public int solution(int[] A) {
+            if (A == null || A.Length < 1) {
+                return 0;
+            }
+            var itervals = new Interval[A.Length];
+            for (int i = 0; i < A.Length; i++) {
+                // use long to avoid data overflow (eg. int.MaxValue + 1)
+                long radius = A[i];
+                itervals[i] = new Interval() {
+                    Left = i - radius,
+                    Right = i + radius
+                };
+            }
+            itervals = itervals.OrderBy(i => i.Left).ToArray();
+
+            int result = 0;
+            for (int i = 0; i < itervals.Length; i++) {
+                var right = itervals[i].Right;
+                for (int j = i + 1; j < itervals.Length && itervals[j].Left <= right; j++) {
+                    result++;
+                    if (result > 10000000) {
+                        return -1;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

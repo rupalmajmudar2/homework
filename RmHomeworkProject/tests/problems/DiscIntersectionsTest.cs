@@ -30,6 +30,13 @@ namespace RmHomeworkProject.tests.problems {
             di = new DiscIntersections();
             Xns = di.solution(A4);
             Assert.AreEqual(1, Xns);
+
+            //==============================
+
+
+            DiscIntersectionsCorrectSolution di2 = new DiscIntersectionsCorrectSolution();
+            int Xns2 = di2.solution(A);
+            Assert.AreEqual(11, Xns2);
         }
     }
 }
