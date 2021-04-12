@@ -3,15 +3,17 @@ using System.Linq;
 
 namespace RmHomeworkProject.problems {
     class DiscIntersections {
-        private SortedDictionary<int, Intersection> _IntersectionsDict;
+        private ListWithDuplicates _IntersectionsDict;
         public int solution(int[] A) {
             int totalNumIntersections = 0;
 
             if (totalNumIntersections > 10000000) return -1;
 
             //(1) Convert into a Dict of name and Intersections
-            //Key = _left_ intersections with the x-axis
             _IntersectionsDict = GetIntersectionsDictFrom(A);
+
+            //(2) Sort by LeftXns
+            _IntersectionsDict = _IntersectionsDict.SortByKey();
 
             //First (extreme left) value
             int leftXn = _IntersectionsDict.ElementAt(0).Key;
@@ -26,6 +28,7 @@ namespace RmHomeworkProject.problems {
                 //Cases for intersections:
                 if (intersection.DoesIntersect(nextIntersection)) {
                     intersection.AddIntersectingXn(nextIntersection); //being added to the Xn on the left, as convention
+                    totalNumIntersections++;
                 }
 
                 //Update vars for the loop
@@ -35,8 +38,8 @@ namespace RmHomeworkProject.problems {
             return totalNumIntersections;
         }
 
-        private SortedDictionary<int, Intersection> GetIntersectionsDictFrom(int[] A) {
-            SortedDictionary<int, Intersection> dict = new SortedDictionary<int, Intersection>();
+        private ListWithDuplicates GetIntersectionsDictFrom(int[] A) {
+            ListWithDuplicates dict = new ListWithDuplicates();
 
             for (int i = 0; i < A.Length; i++) {
                 int center = i;
@@ -75,6 +78,18 @@ namespace RmHomeworkProject.problems {
             if (nextIntersection.rightXn >= this.rightXn) return true;
 
             return false;
+        }
+    }
+
+    public class ListWithDuplicates : List<KeyValuePair<int, Intersection>> {
+        public void Add(int key, Intersection value) {
+            var element = new KeyValuePair<int, Intersection>(key, value);
+            this.Add(element);
+        }
+
+        public ListWithDuplicates SortByKey() {
+            this.Sort((x, y) => x.Key.CompareTo(y.Key));
+            return this;
         }
     }
 }
