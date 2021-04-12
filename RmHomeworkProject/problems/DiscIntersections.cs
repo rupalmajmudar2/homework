@@ -18,6 +18,8 @@ namespace RmHomeworkProject.problems {
             //(2) Sort by LeftXns
             _IntersectionsDict = _IntersectionsDict.SortByKey();
 
+            if (_IntersectionsDict.Count == 0) return 0;
+
             //First (extreme left) value
             int leftXn = _IntersectionsDict.ElementAt(0).Key;
             Intersection intersection = _IntersectionsDict.ElementAt(0).Value;
