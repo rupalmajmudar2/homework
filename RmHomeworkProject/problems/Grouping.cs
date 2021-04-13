@@ -27,7 +27,16 @@ namespace RmHomeworkProject.problems {
                 }
             }
 
-            return -2;
+            //Traverse both arrays, find the _position_ where they equal
+            for (int i = 0; i < A.Length; i++) {
+                int numXsTillHere = CumulativeXs[i];
+                int numNonXsOnOtherSide = CumulativeNonXs[A.Length-1] - CumulativeNonXs[A.Length - 1]
+                if ( CumulativeXs[i] == CumulativeNonXs[i] ) {
+                    return (i+1); //index 0 is 1st position!
+                }
+            }
+
+            return -1;
         }
     }
 }
