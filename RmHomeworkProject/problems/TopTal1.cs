@@ -3,27 +3,47 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace RmHomeworkProject.problems {
-    class TopTal1 {
-        public int solution(int[] A) {
-            return -1;
-        }
-    }
 
     class Result {
 
         /*
-         * Complete the 'fizzBuzz' function below.
+         * Complete the 'countPalindromes' function below.
          *
-         * The function accepts INTEGER n as parameter.
+         * The function is expected to return an INTEGER.
+         * The function accepts STRING s as parameter.
          */
 
-        public static void fizzBuzz(int n) {
-            for (int i = 1; i <= n; i++) {
-                if ((i % 3 == 0) && (i % 5 == 0)) Console.WriteLine("FizzBuzz");
-                if ((i % 3 == 0) && (i % 5 != 0)) Console.WriteLine("Fizz");
-                if ((i % 3 != 0) && (i % 5 == 0)) Console.WriteLine("Buzz");
-                if ((i % 3 != 0) && (i % 5 != 0)) Console.WriteLine(i);
+        public static int countPalindromes(string s) {
+            if (string.IsNullOrEmpty(s)) return 0;
+            s = s.Trim();
+            int count = 0; // s.Length; //1-char
+
+            string all = "";
+            for (int i = 0; i < s.Length; i++) {
+                for (int j=1; j <= s.Length - i; j++) {
+                    try {
+                        string substr = s.Substring(i, j);
+                        if (IsPalindrome(substr)) {
+                            count++;
+                            all += substr + ";";
+                        }
+                    }
+                    catch (Exception e) {
+                        Console.WriteLine("Err");
+                    }
+                }
             }
+
+            return count;
+        }
+
+        public static bool IsPalindrome(string s) {
+            string s_reverse = "";
+            for (int i = s.Length - 1; i >= 0; i--) {
+                s_reverse += s[i].ToString();
+            }
+
+            return s_reverse.Equals(s);
         }
 
     }

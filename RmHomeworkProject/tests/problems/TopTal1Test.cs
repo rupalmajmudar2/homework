@@ -7,12 +7,26 @@ namespace RmHomeworkProject.tests.problems {
     class TopTal1Test {
         [Test]
         public void Test() {
-            TopTal1 test1 = new TopTal1();
-            int[] A = { 3, 1, 2, 4, 3 };
-            int soln = test1.solution(A);
-            Assert.IsTrue(true);
+            Result test1 = new Result();
+            string s = "tacocat";
+            int count = Result.countPalindromes(s);
+            Assert.AreEqual(10, count);
 
-            Result.fizzBuzz(15);
+            s = "";
+            count = Result.countPalindromes(s);
+            Assert.AreEqual(0, count);
+
+            s = "a";
+            count = Result.countPalindromes(s);
+            Assert.AreEqual(1, count);
+
+            s = "sa";
+            count = Result.countPalindromes(s);
+            Assert.AreEqual(2, count);
+
+            s = "ss";
+            count = Result.countPalindromes(s);
+            Assert.AreEqual(3, count);
         }
     }
 }
