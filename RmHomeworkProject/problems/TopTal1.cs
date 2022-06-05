@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RmHomeworkProject.problems {
@@ -14,7 +16,16 @@ namespace RmHomeworkProject.problems {
          */
 
         public static int countPalindromes(string s) {
-            if (string.IsNullOrEmpty(s)) return 0;
+            List<string> table = new List<string>();
+
+            for (int i = 0; i < s.Length; i++) {
+                //Need to handle even and odd sepatately!
+                find(s, i, i, table);
+                find(s, i, i + 1, table);
+            }
+
+
+            /*if (string.IsNullOrEmpty(s)) return 0;
             s = s.Trim();
             int count = 0; // s.Length; //1-char
 
@@ -32,9 +43,29 @@ namespace RmHomeworkProject.problems {
                         Console.WriteLine("Err");
                     }
                 }
-            }
+            }*/
 
-            return count;
+            return table.Count;
+        }
+
+        public static void find(String s, int low, int high, List<string> table) {
+            try {
+                while (low >= 0 && high < s.Length
+                        && s.ElementAt(low).Equals(s.ElementAt(high))) {
+
+                    string substr = s.Substring(low, high+1);
+                    if (string.IsNullOrEmpty(substr) == false) {
+                        table.Add(substr);
+                    }
+
+                    // Expand in both directions
+                    low--;
+                    high++;
+                }
+            }
+            catch (Exception e) {
+                Console.WriteLine("Err");
+            }
         }
 
         public static bool IsPalindrome(string s) {
