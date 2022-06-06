@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 
 namespace RmHomeworkProject.algos.sort {
+
+    //https://www.hackerearth.com/practice/algorithms/sorting/bubble-sort/tutorial/
     public class Sort {
         [Test]
         public void TestBubbleSort() {
